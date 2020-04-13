@@ -22,22 +22,21 @@ GRANT ALL PRIVILEGES ON library.* TO maria@localhost;
 
 Авторизуємося від імені користувача **_maria_**... 
 
-```
-> mysql -u maria -p 
-```
-![pic 01](ms02.png)
+    > mysql -u maria -p 
+
+![pic 02](ms02.png)
 
 вибираємо БД **_library_** та перевіяємо її..
 
 ```sql
-use library;
-show tables;
+USE library
+SHOW tables;
 ```
-![pic 01](ms03.png)
+![pic 03](ms03.png)
 
 вона порожня (не містить таблиць).
 
-Підготуємо дані для створення таблиць. У файлі **tables.sql** розмістимо SQL-код для створення таблиць книжок та читачів: **_books_** та **_readers_** відповідно.
+Підготуємо структуру для майбутніх таблиць (назви полів, їх тип). У файлі **tables.sql** розмістимо такий SQL-код для створення таблиць книжок та читачів: **_books_** та **_readers_** відповідно.
 
 ```sql
 CREATE TABLE books (
@@ -57,8 +56,21 @@ CREATE TABLE readers (
   bid     SMALLINT  UNSIGNED NOT NULL   /* BookID */
 ) ENGINE=MyISAM;
 ```
+Виконуємо SQL-код для нашої бази даних, входимо в неї, та перевіряємо наявність таблиць:
 
-У файлі **data.sql** розмістимо SQL-код для наповнення заданими даними таблиць **_books_** та **_readers_**.
+    > mysql -u maria -p library < /home/olex/docs/masha/tables.sql
+
+![pic 04](ms04.png)
+
+Перевіряємо структуру таблиць:
+
+```sql
+DESC book;
+DESC readers;
+```
+![pic 05](ms05.png)
+
+Створемо файл **data.sql** де розмістимо SQL-код для наповнення заданими даними таблиць **_books_** та **_readers_**.
 
 ```sql
 INSERT INTO books () VALUES
@@ -88,4 +100,19 @@ INSERT INTO readers () VALUES
 (10, "Ріпко П.С.",    10, "2018-04-06", "2018-04-16", 209),
 (11, "Соломаха К.К.", 11, "2018-04-06", "2018-04-19", 203);
 ```
+
+Виконуємо SQL-код для нашої бази даних, входимо в неї, та перевіряємо наявність даних в таблицях:
+
+    > mysql -u maria -p library < /home/olex/docs/masha/data.sql
+
+```sql
+SELECT * FROM books;
+SELECT * FROM readers;
+```
+
+![pic 07](ms07.png)
+
+Д
+
+![pic 08](ms08.png)
 
