@@ -7,7 +7,7 @@
 
 ### 171
 
-```mysql
+```sql
 SELECT autor, title, publ FROM books WHERE publ=2016;
 ```
 ![171](ms171.png)
